@@ -1,0 +1,60 @@
+<div class="card grid" [formGroup]="ownershipForm">
+  <div *ngIf="action === 'EDIT'" class="col-6 flex flex-column gap-2">
+    <label for="username">HN</label>
+    <input type="text" pInputText [formControl]="hn" />
+  </div>
+  <div class="col-6 flex flex-column gap-2">
+    <label for="username">ชื่อ</label>
+    <input type="text" pInputText [formControl]="firstName" />
+  </div>
+  <div class="col-6 flex flex-column gap-2">
+    <label for="username">นามสกุล</label>
+    <input type="text" pInputText [formControl]="lastName" />
+  </div>
+  <div class="col-6 flex flex-column gap-2">
+    <label for="username">เบอร์ติดต่อ</label>
+    <p-inputMask mask="099-999-9999" [formControl]="phone"></p-inputMask>
+  </div>
+  <div class="col-6 flex flex-column gap-2">
+    <label for="username">อีเมล์</label>
+    <input type="text" pInputText [formControl]="email" />
+  </div>
+
+  <div class="col-6 align-items-end flex flex-row justify-content-end">
+    <span class="p-buttonset">
+      <button
+        (click)="close('ADD')"
+        pButton
+        pRipple
+        label="Add"
+        class="p-button-success"
+        icon="pi pi-check"
+      ></button>
+      <ng-container *ngIf="action === 'EDIT'">
+        <button
+          (click)="close('SAVE')"
+          pButton
+          pRipple
+          label="Save"
+          icon="pi pi-check"
+        ></button>
+        <button
+          (click)="close('DELETE')"
+          pButton
+          pRipple
+          label="Delete"
+          class="p-button-danger"
+          icon="pi pi-trash"
+        ></button>
+      </ng-container>
+      <button
+        (click)="close('CANCEL')"
+        pButton
+        pRipple
+        label="Cancel"
+        class="p-button-secondary"
+        icon="pi pi-times"
+      ></button>
+    </span>
+  </div>
+</div>

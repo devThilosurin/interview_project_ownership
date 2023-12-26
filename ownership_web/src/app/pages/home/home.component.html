@@ -1,0 +1,55 @@
+<div class="w-4/5 mx-auto mt-10" *ngIf="ownerships$ | async as ownerships">
+  <p-table
+    [value]="ownerships"
+    [paginator]="true"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    (onPage)="pageChange($event)"
+    [currentPageReportTemplate]="
+      'Showing {first}' + ' to {last}' + ' of ' + '{totalRecords}' + ' entries'
+    "
+    [rowsPerPageOptions]="[10, 25, 50]"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 25%">Operation</th>
+        <th style="width: 25%">HN เจ้าของ</th>
+        <th style="width: 25%">ชื่อเจ้าของ</th>
+        <th style="width: 25%">เบอร์ติดต่อ</th>
+        <th style="width: 25%">อีเมล์</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-ownership>
+      <tr>
+        <td>
+          <button
+            (click)="edit(ownership)"
+            pButton
+            pRipple
+            icon="pi pi-file-edit"
+          ></button>
+        </td>
+        <td>{{ ownership.hn }}</td>
+        <td>{{ ownership.first_name + " " + ownership.last_name }}</td>
+        <td>{{ ownership.phone }}</td>
+        <td>{{ ownership.email }}</td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="paginatorleft">
+      <p-button
+        (click)="show()"
+        type="button"
+        icon="pi pi-plus"
+        styleClass="p-button-text"
+      ></p-button>
+    </ng-template>
+    <ng-template pTemplate="paginatorright">
+      <!-- <p-button
+        type="button"
+        icon="pi pi-cloud"
+        styleClass="p-button-text"
+      ></p-button> -->
+    </ng-template>
+  </p-table>
+</div>
